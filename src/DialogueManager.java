@@ -1,4 +1,3 @@
-import java.util.Scanner;
 public class DialogueManager {
     /**
      * Prints a string character by character with a 50ms delay between each
