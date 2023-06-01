@@ -1,5 +1,5 @@
 public class Ship {
-    double durability, speed, fuel, maxFuel, maxDurability, ammo, maxAmmo;
+    double durability, speed, fuel, maxFuel, maxDurability, ammo, maxAmmo, cargo, maxCargo;
     String name;
     ShipType type;
 
@@ -7,7 +7,7 @@ public class Ship {
         LIGHT, MEDIUM, HEAVY
     }
 
-    public Ship(String name, ShipType type, double durability, double speed, double fuel, double ammo) {
+    public Ship(String name, ShipType type, double durability, double speed, double fuel, double ammo, double cargo) {
         this.name = name;
         this.type = type;
         this.durability = durability;
@@ -30,6 +30,8 @@ public class Ship {
             this.maxDurability = 25;
             this.maxFuel = 25;
             this.maxAmmo = 25;
+            this.cargo = 10;
+            this.maxCargo = 25;
         } else if (type == ShipType.MEDIUM) {
             this.name = name;
             this.type = type;
@@ -40,6 +42,8 @@ public class Ship {
             this.maxDurability = 50;
             this.maxFuel = 50;
             this.maxAmmo = 50;
+            this.cargo = 25;
+            this.maxCargo = 50;
         } else if (type == ShipType.HEAVY) {
             this.name = name;
             this.type = type;
@@ -50,6 +54,8 @@ public class Ship {
             this.maxDurability = 100;
             this.maxFuel = 100;
             this.maxAmmo = 100;
+            this.cargo = 50;
+            this.maxCargo = 100;
         } else {
             System.out.println("Invalid ship type!");
         }
