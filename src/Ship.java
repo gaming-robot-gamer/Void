@@ -56,12 +56,12 @@ public class Ship {
     }
 
     public void printStats() {
-        System.out.println("Name: " + name);
-        System.out.println("Type: " + type);
-        System.out.println("Durability: " + durability);
-        System.out.println("Speed: " + speed);
-        System.out.println("Fuel: " + fuel);
-        System.out.println("Ammo: " + ammo);
+        Game.print("Name: " + name + "\n", 2);
+        Game.print("Type: " + type + "\n", 2);
+        Game.print("Durability: " + durability + "\n", 2);
+        Game.print("Speed: " + speed + "\n", 2);
+        Game.print("Fuel: " + fuel + "\n", 2);
+        Game.print("Ammo: " + ammo + "\n", 2);
     }
 
     public void damage(double damage) {
@@ -106,5 +106,4 @@ public class Ship {
         }
     }
 
-    
 }
