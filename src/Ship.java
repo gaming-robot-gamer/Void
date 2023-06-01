@@ -61,13 +61,39 @@ public class Ship {
         }
     }
 
-    public void printStats() {
-        Game.print("Name: " + name + "\n", 2);
-        Game.print("Type: " + type + "\n", 2);
-        Game.print("Durability: " + durability + "\n", 2);
-        Game.print("Speed: " + speed + "\n", 2);
-        Game.print("Fuel: " + fuel + "\n", 2);
-        Game.print("Ammo: " + ammo + "\n", 2);
+    public String getAllStats() {
+        String stats;
+        stats = "Name : " + name + "\n";
+        stats += "Type : " + type + "\n";
+        stats += "Durability : " + durability + "\n";
+        stats += "Speed : " + speed + "\n";
+        stats += "Fuel : " + fuel + "\n";
+        stats += "Ammo : " + ammo + "\n";
+        return stats;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ShipType getType() {
+        return type;
+    }
+
+    public double getDurability() {
+        return durability;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public double getFuel() {
+        return fuel;
+    }
+
+    public double getAmmo() {
+        return ammo;
     }
 
     public void damage(double damage) {
