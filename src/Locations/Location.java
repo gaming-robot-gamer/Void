@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Location {
 
     public LocType locType;
+    public String name;
     public ArrayList<String> locOptions = new ArrayList<String>() {{
         add("Dock");
         add("Leave");
@@ -34,6 +35,9 @@ public class Location {
         return locType;
     }
 
+    public String getName() {
+        return name;
+    }
 
 
 }

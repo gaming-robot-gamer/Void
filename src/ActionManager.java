@@ -28,6 +28,7 @@ public class ActionManager {
         
         currActions = LocManager.currentLocation.getLocActions();
         
+        actionMenu();
         
         /*switch (status) {
             case TRAVEL:
@@ -66,7 +67,12 @@ public class ActionManager {
                 refuel();
                 break;
             case "Buy Fuel":
+                DialogueManager.print("You have " + Void.PLAYER.getCredits() + " credits");
                 buyFuel(DialogueManager.promptInt("How much fuel would you like to buy? \n Fuel is 2 credits per unit"));
+                break;
+            case "Buy Ammo":
+                DialogueManager.print("You have " + Void.PLAYER.getCredits() + " credits");
+                buyAmmo(DialogueManager.promptInt("How much ammo would you like to buy? \n Ammo is 1 credit per unit"));
                 break;
             case "Sell Cargo":
                 DialogueManager.print("You have " + Void.SHIP.getCargo() + " cargo");
@@ -75,9 +81,18 @@ public class ActionManager {
             default:
                 DialogueManager.prompt("Invalid input");
                 break;
+        
         }
     }
 
+    public static void buyAmmo(int ammo) {
+        if (Void.PLAYER.getCredits() >= ammo) {
+            Void.PLAYER.loseCredits(ammo);
+            Void.SHIP.reload(ammo);
+        } else {
+            DialogueManager.print("You do not have enough credits");
+        }
+    }
     public static void refuel() {
         Void.SHIP.refuel(10);
         Void.PLAYER.loseOxygen(1);
@@ -86,6 +101,7 @@ public class ActionManager {
      * Allows the player to dock at a location
      */
     public static void dock() {
+        DialogueManager.print("You have docked at " + LocManager.currentLocation.getName());
         status = Status.DOCKED;
     }
     /**
