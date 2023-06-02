@@ -3,6 +3,8 @@ package Locations;
 import java.util.ArrayList;
 
 public class Asteroid extends Location{
+    int resources;
+    String name;
     public ArrayList<String> ASTEROID_NAMES = new ArrayList<String>() {{
         add("Asteroid 1");
         add("Asteroid 2");
@@ -22,6 +24,9 @@ public class Asteroid extends Location{
 
     public Asteroid(int resources, LocAlignment alignment) {
         super(alignment);
+        this.name = getRandomAsteroidName();
+        this.resources = resources;
+        locType = LocType.ASTEROID;
     }
         
     public String getRandomAsteroidName() {

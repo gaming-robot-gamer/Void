@@ -3,6 +3,8 @@ package Locations;
 import java.util.ArrayList;
 
 public class Location {
+
+    public LocType locType;
     public ArrayList<String> locOptions = new ArrayList<String>() {{
         add("Dock");
         add("Leave");
@@ -17,7 +19,7 @@ public class Location {
     }
 
     public enum LocType {
-        ASTEROID, MOON, SPACE_STATION
+        ASTEROID, MOON, SPACE_STATION, VOID
     }
 
     public String getLocActions() {
@@ -26,6 +28,10 @@ public class Location {
             locActions += action + ",\n ";
         }
         return locActions;
+    }
+
+    public LocType getLocType() {
+        return locType;
     }
 
 

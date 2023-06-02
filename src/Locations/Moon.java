@@ -25,6 +25,7 @@ public class Moon extends Location{
     public Moon(int resources, LocAlignment alignment) {
         super(alignment);
         this.resources = resources;
+        locType = LocType.MOON;
     }
 
     public String getRandomMoonName() {

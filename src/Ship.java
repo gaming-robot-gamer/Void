@@ -138,4 +138,40 @@ public class Ship {
         }
     }
 
+    public void addCargo(double cargo) {
+        this.cargo += cargo;
+        if (this.cargo > maxCargo) {
+            this.cargo = maxCargo;
+        }
+    }
+
+    public void removeCargo(double cargo) {
+        this.cargo -= cargo;
+        if (this.cargo < 0) {
+            this.cargo = 0;
+        }
+    }
+
+    public double getCargo() {
+        return cargo;
+    }
+
+    public double getMaxCargo() {
+        return maxCargo;
+    }
+
+    public double getMaxDurability() {
+        return maxDurability;
+    }
+
+    public double getMaxFuel() {
+        return maxFuel;
+    }
+
+    public double getMaxAmmo() {
+        return maxAmmo;
+    }
+
+    
+
 }

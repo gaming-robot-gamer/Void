@@ -71,6 +71,12 @@ public class DialogueManager {
         return input.nextLine();
     }
 
+    public static int promptInt(String str) {
+        Scanner input = new Scanner(System.in);
+        System.out.print(str + " ");
+        return input.nextInt();
+    }
+
     public static void startScreen() {
         clearScreen();
         System.out.print("\033[1;31m");
