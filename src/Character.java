@@ -6,7 +6,7 @@ public class Character {
     public int credits; //moneyyyy
     public int bounty; //bounty on your head
 
-    public Character(String name, int health) {
+    public Character(String name) {
         this.name = name;
         this.strength = 10;
         this.health = 100;
