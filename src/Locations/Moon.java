@@ -15,17 +15,20 @@ public class Moon extends Location{
         add("Elara");
     }};
     public ArrayList<String> locOptions = new ArrayList<String>(super.locOptions) {{
-        add("Mine");
-        add("Refuel");
-        add("Repair");
-        add("Buy");
-        add("Sell");
+        
     }};
 
     public Moon(int resources, LocAlignment alignment) {
         super(alignment);
         this.resources = resources;
         locType = LocType.MOON;
+        locOptions.add("Mine");
+        locOptions.add("Refuel");
+        locOptions.add("Repair");
+        locOptions.add("Buy Cargo");
+        locOptions.add("Buy Fuel");
+        locOptions.add("Buy Ammo");
+        locOptions.add("Sell Cargo");
     }
 
     public String getRandomMoonName() {

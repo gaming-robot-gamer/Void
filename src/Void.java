@@ -1,4 +1,8 @@
+import javax.tools.DocumentationTool.Location;
+
 import Locations.*;
+import Locations.Location.LocAlignment;
+import Locations.Location.LocType;
 
 public class Void {
     public static Character PLAYER;
@@ -22,9 +26,14 @@ public class Void {
         //DialogueManager.introduction();
 
         // Display the current location
+        LocManager.createLocation(LocType.ASTEROID, LocAlignment.NEUTRAL);
+        LocManager.setCurrentLocation(LocManager.allLocs.get(0));
         DialogueManager.print("You are currently at " + LocManager.currentLocation.getName() + "\n");
 
         // Start the game
-        ActionManager.run();
+        while (true) {
+            ActionManager.run();
+        }
+        
     }
 }

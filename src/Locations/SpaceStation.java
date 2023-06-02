@@ -17,20 +17,18 @@ public class SpaceStation extends Location{
         add("Rio Station");
         add("Cairo Station");
     }};
-
-    public ArrayList<String> locOptions = new ArrayList<String>(super.locOptions) {{
-        add("Refuel");
-        add("Repair");
-        add("Buy Cargo");
-        add("Buy Fuel");
-        add("Buy Ammo");
-        add("Sell Cargo");
-    }};
     
     public SpaceStation(int resources, LocAlignment alignment) {
         super(alignment);
         this.resources = resources;
         locType = LocType.SPACE_STATION;
+        locOptions.add("Mine");
+        locOptions.add("Refuel");
+        locOptions.add("Repair");
+        locOptions.add("Buy Cargo");
+        locOptions.add("Buy Fuel");
+        locOptions.add("Buy Ammo");
+        locOptions.add("Sell Cargo");
     }
 
     public String getRandomSSName() {

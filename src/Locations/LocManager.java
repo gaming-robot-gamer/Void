@@ -2,18 +2,18 @@ package Locations;
 
 import java.util.ArrayList;
 
+import Locations.Location.LocType;
+
 public class LocManager {
     public static ArrayList<Location> allLocs = new ArrayList<Location>(){{
         add(new Asteroid(10, Location.LocAlignment.NEUTRAL));
     }};
 
     public static Location currentLocation;
+    public static LocType currentLocType;
 
     public LocManager() {
-        currentLocation = allLocs.get(0); // ON GAME START, CURRENT LOCATION IS AN ASTEROID
     }
-
-    public static LocManager instance = new LocManager();
     
     public static void createLocation(Location.LocType type, Location.LocAlignment alignment) {
         switch (type) {
@@ -33,6 +33,13 @@ public class LocManager {
         if (alignment == Location.LocAlignment.HOSTILE) {
             allLocs.get(allLocs.size() - 1).locOptions.add("Attack");
         }
+    }
+
+    public static void setCurrentLocation(Location loc) {
+        currentLocation = loc;
+    }
+    public static void setCurrentLocation(LocType locType) {
+        
     }
 
     public static void generateLocation() {
@@ -72,5 +79,9 @@ public class LocManager {
 
     public static Location getCurrentLocation() {
         return currentLocation;
+    }
+
+    public static void setCurrentLocType(LocType locType) {
+        currentLocType = locType;
     }
 }

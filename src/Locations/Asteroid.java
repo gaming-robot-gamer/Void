@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Asteroid extends Location{
     int resources;
-    String name;
     public ArrayList<String> ASTEROID_NAMES = new ArrayList<String>() {{
         add("Asteroid 1");
         add("Asteroid 2");
@@ -18,15 +17,13 @@ public class Asteroid extends Location{
         add("Asteroid 10");
     }};
 
-    public ArrayList<String> locOptions = new ArrayList<String>(super.locOptions) {{
-        add("Mine");
-    }};
 
     public Asteroid(int resources, LocAlignment alignment) {
         super(alignment);
         this.name = getRandomAsteroidName();
         this.resources = resources;
         locType = LocType.ASTEROID;
+        locOptions.add("Mine");
     }
         
     public String getRandomAsteroidName() {
