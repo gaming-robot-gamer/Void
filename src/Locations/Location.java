@@ -25,8 +25,10 @@ public class Location {
 
     public String getLocActions() {
         String locActions = "";
+        int i = 1;
         for (String action : locOptions) {
-            locActions += action + ",\n ";
+            locActions += i + ". " + action + "\n";
+            i++;
         }
         return locActions;
     }

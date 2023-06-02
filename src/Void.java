@@ -6,7 +6,7 @@ public class Void {
 
     public static void main(String[] args) throws Exception {
         // Display the title screen
-        DialogueManager.startScreen();
+        //DialogueManager.startScreen();
 
         // Player Creation
         String name = DialogueManager.prompt("Enter your name:");
@@ -17,10 +17,14 @@ public class Void {
         String shipName = DialogueManager.prompt("Name your ship:");
         SHIP = DialogueManager.createShip(shipName);
         DialogueManager.showShipStats(SHIP);
-        
+
         // Introduction text
-        DialogueManager.introduction();
+        //DialogueManager.introduction();
+
+        // Display the current location
+        DialogueManager.print("You are currently at " + LocManager.currentLocation.getName() + "\n");
 
         // Start the game
+        ActionManager.run();
     }
 }
