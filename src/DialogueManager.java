@@ -143,4 +143,27 @@ public class DialogueManager {
         print("The JLA consists of thousands of pirates who are trying \nto establish \"order\" in the sector through violent means. \n");
         wait(2.5);
     }
+
+    public static void actionManagerInstructions() {
+        clearScreen();
+        print("Throughout the game you can perform the following actions\n in certain situations.");
+        wait(1);
+        print("1. Status Report - Displays your current stats and cargo\n");
+        print("2. Dock - Dock at a space station to buy and sell cargo, refuel, and repair your ship\n");
+        print("3. Leave - Leave the space station\n");
+        print("4. Travel - Travel to a different location\n");
+        print("5. Mine - Mine asteroids for cargo\n");
+        print("6. Attack - Attack a hostile location\n");
+        print("7. Repair - Repair your ship\n");
+        print("8. Refuel - Refuel your ship\n");
+        print("9. Buy Ammo - Buy ammo for your ship\n");
+        print("10. Sell Cargo - Sell cargo for credits\n");
+        print("11. Buy Oxygen - Buy oxygen for your ship\n");
+        print("12. Quit - Quit the game\n");
+        wait(5);
+        print("\nTo use an action simply type out the name of the action and press enter\n");
+        wait(1);
+        print("Actions are case insensitive, so you can type them in all caps or all lowercase\n");
+        wait(3);
+    }
 }

@@ -10,7 +10,7 @@ public class ActionManager {
     public static Status status;
     public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     public static String currActions = "";
-    
+
     public ActionManager() {
         status = Status.DOCKED;
     }
@@ -27,41 +27,42 @@ public class ActionManager {
     }
 
     public static void run() {
-        
+
         LocManager.allLocs.get(0).updateOptions();
         currActions = LocManager.currentLocation.getLocActions();
-    
+
         if (status == Status.BATTLE) {
             battleMenu();
         } else {
             actionMenu();
         }
-        
-        
-        /*switch (status) {
-            case TRAVEL:
-                travel();
-                break;
-            case BATTLE:
-                //battle();
-                break;
-            case DOCKED:
-                docked();
-                break;
-            case GAMEOVER:
-                //gameover();
-                break;
-        } */
+
+        /*
+         * switch (status) {
+         * case TRAVEL:
+         * travel();
+         * break;
+         * case BATTLE:
+         * //battle();
+         * break;
+         * case DOCKED:
+         * docked();
+         * break;
+         * case GAMEOVER:
+         * //gameover();
+         * break;
+         * }
+         */
     }
 
     public static void actionMenu() {
-        String input = DialogueManager.prompt("\nWhat would you like to do?\n" + currActions + "\n");
+        String input = DialogueManager.prompt("\nWhat would you like to do?\n" + currActions + "\n > ");
 
-        switch(input) {
+        switch (input) {
             case "Status Report":
                 printStatus();
                 break;
-            case "Dock": 
+            case "Dock":
                 dock();
                 break;
             case "Leave":
@@ -78,7 +79,7 @@ public class ActionManager {
                 break;
             case "Repair":
                 repair();
-                break; 
+                break;
             case "Refuel":
                 printCredits();
                 refuel();
@@ -89,16 +90,18 @@ public class ActionManager {
                 break;
             case "Sell Cargo":
                 printCredits();
-                sell(DialogueManager.promptInt("How much cargo would you like to sell? \n Cargo is 3 credits per unit"));
+                sell(DialogueManager
+                        .promptInt("How much cargo would you like to sell? \n Cargo is 3 credits per unit"));
                 break;
             case "Buy Oxygen":
                 printCredits();
-                buyOxygen(DialogueManager.promptInt("How much oxygen would you like to buy? \n Oxygen is 1 credit per unit"));
+                buyOxygen(DialogueManager
+                        .promptInt("How much oxygen would you like to buy? \n Oxygen is 1 credit per unit"));
                 break;
             default:
                 DialogueManager.prompt("Invalid input");
                 break;
-        
+
         }
     }
 
@@ -159,6 +162,7 @@ public class ActionManager {
         Void.PLAYER.loseCredits(fuelToBuy * 2);
         Void.PLAYER.loseOxygen(1);
     }
+
     /**
      * Allows the player to dock at a location
      */
@@ -168,6 +172,7 @@ public class ActionManager {
         status = Status.DOCKED;
         currActions = LocManager.currentLocation.getLocActions();
     }
+
     /**
      * Allows the player to travel to a new location
      */
@@ -179,11 +184,12 @@ public class ActionManager {
         } else {
             DialogueManager.print("You cannot travel while docked or in battle.");
         }
-        
+
     }
 
     /**
      * Allows the player to sell cargo
+     * 
      * @param cargo
      */
     public static void sell(int cargo) {
@@ -199,7 +205,6 @@ public class ActionManager {
         }
     }
 
-    
     /**
      * Allows the player to leave a location
      */
@@ -208,12 +213,13 @@ public class ActionManager {
             DialogueManager.print("You have undocked.");
             status = Status.TRAVEL;
             LocManager.setCurrentLocation(LocManager.allLocs.get(0));
-+-            currActions = "Dock, \nTravel, \nRepair";
+            currActions = "Dock, \nTravel, \nRepair";
         } else {
             DialogueManager.print("You cannot undock from somewhere you're not docked to, " + Void.PLAYER.name + ".");
         }
-        
+
     }
+
     /**
      * Allows the player to attempt to run from a battle
      */
@@ -226,8 +232,9 @@ public class ActionManager {
      */
     public static void mine() {
         if (status != Status.DOCKED) {
-            if ( (LocManager.getCurrentLocation().getLocType() != LocType.ASTEROID) || (LocManager.getCurrentLocation().getLocType() != LocType.MOON) )
-            DialogueManager.print("You cannot mine unless docked at an asteroid or moon.");
+            if ((LocManager.getCurrentLocation().getLocType() != LocType.ASTEROID)
+                    || (LocManager.getCurrentLocation().getLocType() != LocType.MOON))
+                DialogueManager.print("You cannot mine unless docked at an asteroid or moon.");
             return;
         }
         Void.SHIP.addCargo(10);
@@ -260,5 +267,4 @@ public class ActionManager {
         }
     }
 
-    
 }
