@@ -7,7 +7,7 @@ public class Location {
     public LocType locType;
     public String name;
     
-    public ArrayList<String> locOptions = new ArrayList<String>(){{add("");}};
+    public ArrayList<String> locOptions = new ArrayList<String>(){{add("Status Report");}};
     
     public Location(LocAlignment alignment) {
         
@@ -37,7 +37,7 @@ public class Location {
         return name;
     }
 
-    public void updateOptions() {
+    public void updateOptions() { //only used for the Space location
         locOptions.set(0, "Dock at " + LocManager.getClosestLocation().getName());
         locOptions.set(1, "Travel");
     }

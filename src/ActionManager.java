@@ -55,43 +55,44 @@ public class ActionManager {
     }
 
     public static void actionMenu() {
-        String input = DialogueManager.prompt("\nWhat would you like to do?\n" + currActions + "\n");
+        String input = DialogueManager.prompt("\nWhat would you like to do?\n" + currActions + "\n").toLowerCase();
 
         switch(input) {
-            case "Status Report":
+            case "status report":
+            case "status":
                 printStatus();
                 break;
-            case "Dock": 
+            case "dock": 
                 dock();
                 break;
-            case "Leave":
+            case "leave":
                 leave();
                 break;
-            case "Travel":
+            case "travel":
                 travel();
                 break;
-            case "Mine":
+            case "mine":
                 mine();
                 break;
-            case "Attack":
+            case "attack":
                 attack();
                 break;
-            case "Repair":
+            case "repair":
                 repair();
                 break; 
-            case "Refuel":
+            case "refuel":
                 printCredits();
                 refuel();
                 break;
-            case "Buy Ammo":
+            case "buy Ammo":
                 printCredits();
                 buyAmmo(DialogueManager.promptInt("How much ammo would you like to buy? \n Ammo is 1 credit per unit"));
                 break;
-            case "Sell Cargo":
+            case "sell Cargo":
                 printCredits();
                 sell(DialogueManager.promptInt("How much cargo would you like to sell? \n Cargo is 3 credits per unit"));
                 break;
-            case "Buy Oxygen":
+            case "buy Oxygen":
                 printCredits();
                 buyOxygen(DialogueManager.promptInt("How much oxygen would you like to buy? \n Oxygen is 1 credit per unit"));
                 break;
@@ -111,11 +112,11 @@ public class ActionManager {
     }
 
     public static void printStatus() {
-        DialogueManager.print("You have " + Void.PLAYER.getCredits() + " credits");
-        DialogueManager.print("You have " + Void.SHIP.getAmmo() + " ammo");
-        DialogueManager.print("You have " + Void.SHIP.getFuel() + " fuel");
-        DialogueManager.print("You have " + Void.PLAYER.getOxygen() + " oxygen");
-        DialogueManager.print("You have " + Void.SHIP.getCargo() + " cargo");
+        DialogueManager.print("You have " + Void.PLAYER.getCredits() + " credits \n");
+        DialogueManager.print("You have " + Void.SHIP.getAmmo() + " ammo\n");
+        DialogueManager.print("You have " + Void.SHIP.getFuel() + " fuel\n");
+        DialogueManager.print("You have " + Void.PLAYER.getOxygen() + " oxygen\n");
+        DialogueManager.print("You have " + Void.SHIP.getCargo() + " cargo\n");
     }
 
     public static void buyAmmo(int ammo) {
@@ -173,7 +174,19 @@ public class ActionManager {
      */
     public static void travel() {
         if (status == Status.TRAVEL) {
-            LocManager.generateLocation();
+            DialogueManager.print("Potential Destinations: \nMoon\nAsteroid\nSpace Station\n");
+            String type = DialogueManager.prompt("What kind of location do you want to travel to? \n").toLowerCase();
+            switch (type) {
+                case "moon":
+                    LocManager.generateMoon();
+                    break;
+                case "asteroid":
+                    LocManager.generateAsteroid();
+                    break;
+                case "space station":
+                    LocManager.generateSS();
+            }
+            //LocManager.generateLocation();
             LocManager.setCurrentLocation(LocManager.getClosestLocation());
             DialogueManager.print("You have traveled to " + LocManager.currentLocation.getName());
         } else {
@@ -208,7 +221,7 @@ public class ActionManager {
             DialogueManager.print("You have undocked.");
             status = Status.TRAVEL;
             LocManager.setCurrentLocation(LocManager.allLocs.get(0));
-+-            currActions = "Dock, \nTravel, \nRepair";
+            currActions = "Dock, \nTravel, \nRepair";
         } else {
             DialogueManager.print("You cannot undock from somewhere you're not docked to, " + Void.PLAYER.name + ".");
         }

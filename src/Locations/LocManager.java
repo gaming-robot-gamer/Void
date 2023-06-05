@@ -2,6 +2,7 @@ package Locations;
 
 import java.util.ArrayList;
 
+import Locations.Location.LocAlignment;
 import Locations.Location.LocType;
 
 public class LocManager {
@@ -16,7 +17,7 @@ public class LocManager {
     public LocManager() {
     }
     
-    public static void createLocation(Location.LocType type, Location.LocAlignment alignment) {
+    public static void createLocation(LocType type, LocAlignment alignment) {
         switch (type) {
             case ASTEROID:
                 allLocs.add(new Asteroid(10, alignment));
@@ -40,35 +41,69 @@ public class LocManager {
         currentLocation = loc;
     }
 
+    public static void generateAsteroid() {
+        createLocation(LocType.ASTEROID, LocAlignment.NEUTRAL);
+    }
+
+    public static void generateMoon() {
+        int rand = (int) (Math.random() * 3);
+        switch (rand) {
+            case 0:
+                createLocation(LocType.MOON, LocAlignment.NEUTRAL);
+                break;
+            case 1:
+                createLocation(LocType.MOON, LocAlignment.HOSTILE);
+                break;
+            case 2:
+                createLocation(LocType.MOON, LocAlignment.FRIENDLY);
+                break;
+        }
+    }
+
+    public static void generateSS() {
+        int rand = (int) (Math.random() * 3);
+        switch (rand) {
+            case 0:
+                createLocation(LocType.SPACE_STATION, LocAlignment.NEUTRAL);
+                break;
+            case 1:
+                createLocation(LocType.SPACE_STATION, LocAlignment.HOSTILE);
+                break;
+            case 2:
+                createLocation(LocType.SPACE_STATION, LocAlignment.FRIENDLY);
+                break;
+        }
+    }
+
     public static void generateLocation() {
         int rand = (int) (Math.random() * 9);
         switch (rand) {
             case 0:
-                createLocation(Location.LocType.ASTEROID, Location.LocAlignment.NEUTRAL);
+                createLocation(LocType.ASTEROID, LocAlignment.NEUTRAL);
                 break;
             case 1:
-                createLocation(Location.LocType.MOON, Location.LocAlignment.NEUTRAL);
+                createLocation(LocType.MOON, LocAlignment.NEUTRAL);
                 break;
             case 2:
-                createLocation(Location.LocType.SPACE_STATION, Location.LocAlignment.NEUTRAL);
+                createLocation(LocType.SPACE_STATION, LocAlignment.NEUTRAL);
                 break;
             case 3:
-                createLocation(Location.LocType.ASTEROID, Location.LocAlignment.HOSTILE);
+                createLocation(LocType.ASTEROID, LocAlignment.HOSTILE);
                 break;
             case 4:
-                createLocation(Location.LocType.MOON, Location.LocAlignment.HOSTILE);
+                createLocation(LocType.MOON, LocAlignment.HOSTILE);
                 break;
             case 5:
-                createLocation(Location.LocType.SPACE_STATION, Location.LocAlignment.HOSTILE);
+                createLocation(LocType.SPACE_STATION, LocAlignment.HOSTILE);
                 break;
             case 6:
-                createLocation(Location.LocType.ASTEROID, Location.LocAlignment.FRIENDLY);
+                createLocation(LocType.ASTEROID, LocAlignment.FRIENDLY);
                 break;
             case 7:
-                createLocation(Location.LocType.MOON, Location.LocAlignment.FRIENDLY);
+                createLocation(LocType.MOON, LocAlignment.FRIENDLY);
                 break;
             case 8:
-                createLocation(Location.LocType.SPACE_STATION, Location.LocAlignment.FRIENDLY);
+                createLocation(LocType.SPACE_STATION, LocAlignment.FRIENDLY);
                 break;
             default:
                 break;

@@ -7,6 +7,7 @@ public class Space extends Location{
         this.name = "Space";
         locType = LocType.SPACE;
         locOptions.add("");
+        locOptions.add("Status Report");
     }
 
 

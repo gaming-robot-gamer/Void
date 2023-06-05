@@ -22,6 +22,7 @@ public class Moon extends Location{
         super(alignment);
         this.resources = resources;
         locType = LocType.MOON;
+        locOptions.add("Leave");
         locOptions.add("Mine");
         locOptions.add("Refuel");
         locOptions.add("Repair");

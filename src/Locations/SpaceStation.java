@@ -22,6 +22,7 @@ public class SpaceStation extends Location{
         super(alignment);
         this.resources = resources;
         locType = LocType.SPACE_STATION;
+        locOptions.add("Leave");
         locOptions.add("Mine");
         locOptions.add("Refuel");
         locOptions.add("Repair");
