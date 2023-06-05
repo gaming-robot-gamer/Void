@@ -80,10 +80,17 @@ public class DialogueManager {
     public static void startScreen() {
         clearScreen();
         System.out.print("\033[1;31m");
-        System.out.print("▌ ▌▞▀▖▜▘▛▀▖\n");
-        System.out.print("▚▗▘▌ ▌▐ ▌ ▌\n");
-        System.out.print("▝▞ ▌ ▌▐ ▌ ▌\n");
-        System.out.print(" ▘ ▝▀ ▀▘▀▀ \n");
+        if (System.getProperty("os.name").startsWith("Windows")) {
+            System.out.print("▌ ▌▞▀▖▜▘▛▀▖\n");
+            System.out.print("▚▗▘▌ ▌▐ ▌ ▌\n");
+            System.out.print("▝▞ ▌ ▌▐ ▌ ▌\n");
+            System.out.print(" ▘ ▝▀ ▀▘▀▀ \n");
+        } else {
+            System.out.print("▌ ▌▞▀▖▜▘▛▀▖\n");
+            System.out.print("▚▗▘▌ ▌▐ ▌ ▌\n");
+            System.out.print("▝▞ ▌ ▌▐ ▌ ▌\n");
+            System.out.print(" ▘ ▝▀ ▀▘▀▀ \n");
+        }
         System.out.print("\033[0m");
         wait(1);
         print("Created by \033[1mSpencer Boggs\033[0m and \033[1mRohan Reddy\033[0m");

@@ -10,7 +10,7 @@ public class Void {
 
     public static void main(String[] args) throws Exception {
         // Display the title screen
-        //DialogueManager.startScreen();
+        DialogueManager.startScreen();
 
         // Player Creation
         String name = DialogueManager.prompt("Enter your name:");
