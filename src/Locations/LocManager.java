@@ -6,6 +6,7 @@ import Locations.Location.LocType;
 
 public class LocManager {
     public static ArrayList<Location> allLocs = new ArrayList<Location>(){{
+        add(new Space());
         add(new Asteroid(10, Location.LocAlignment.NEUTRAL));
     }};
 
@@ -37,9 +38,6 @@ public class LocManager {
 
     public static void setCurrentLocation(Location loc) {
         currentLocation = loc;
-    }
-    public static void setCurrentLocation(LocType locType) {
-        
     }
 
     public static void generateLocation() {
@@ -81,7 +79,8 @@ public class LocManager {
         return currentLocation;
     }
 
-    public static void setCurrentLocType(LocType locType) {
-        currentLocType = locType;
+    public static Location getClosestLocation() {
+        return allLocs.get(allLocs.size() - 1);
     }
+
 }

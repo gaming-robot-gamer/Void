@@ -7,10 +7,7 @@ public class Location {
     public LocType locType;
     public String name;
     
-    public ArrayList<String> locOptions = new ArrayList<String>() {{
-        add("Dock");
-        add("Leave");
-    }};
+    public ArrayList<String> locOptions = new ArrayList<String>(){{add("");}};
     
     public Location(LocAlignment alignment) {
         
@@ -21,15 +18,13 @@ public class Location {
     }
 
     public enum LocType {
-        ASTEROID, MOON, SPACE_STATION, VOID
+        ASTEROID, MOON, SPACE_STATION, SPACE
     }
 
     public String getLocActions() {
         String locActions = "";
-        int i = 1;
         for (String action : locOptions) {
-            locActions += "\n" + i + ". " + action;
-            i++;
+            locActions += "\n" + action;
         }
         return locActions;
     }
@@ -40,6 +35,11 @@ public class Location {
 
     public String getName() {
         return name;
+    }
+
+    public void updateOptions() {
+        locOptions.set(0, "Dock at " + LocManager.getClosestLocation().getName());
+        locOptions.set(1, "Travel");
     }
 
 

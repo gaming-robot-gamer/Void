@@ -121,7 +121,7 @@ public class DialogueManager {
 
     public static void introduction() {
         clearScreen();
-        print("Hello, Pilot.\n");
+        print("Hello, " + Void.PLAYER.name + ".\n");
         wait(1);
         print("I am Minerva, the AI assistant for your ship.\n");
         wait(1.5);
@@ -133,7 +133,7 @@ public class DialogueManager {
         wait(1.5);
         print("You are in the Jupiter Sector, which is controlled by the JLA, or Jovian \nLiberation Alliance. ");
         wait(1);
-        print("The JLA consists of thousands of pirates who are trying \nto establish “order” in the sector through violent means. ");
+        print("The JLA consists of thousands of pirates who are trying \nto establish \"order\" in the sector through violent means. \n");
         wait(2.5);
     }
 }
