@@ -62,7 +62,7 @@ public class ActionManager {
     public static void actionMenu() {
         String input = DialogueManager.prompt("\nWhat would you like to do?\n" + currActions + "\n >").toLowerCase();
 
-        switch(input) {
+        switch (input) {
             case "status report":
             case "status":
                 printStatus();
@@ -111,7 +111,22 @@ public class ActionManager {
     }
 
     public static void battleMenu() {
+        String input = DialogueManager.prompt("\nWhat would you like to do? \nAttack \nFlee \nEvade").toLowerCase();
 
+        switch (input) {
+            case "attack":
+                attack();
+                break;
+            case "flee":
+                flee();
+                break;
+            case "evade":
+                evade();
+                break;
+            default:
+                DialogueManager.prompt("Invalid input");
+                break;
+        }
     }
 
     public static void printCredits() {
@@ -251,13 +266,6 @@ public class ActionManager {
     }
 
     /**
-     * Allows the player to attempt to run from a battle
-     */
-    public static void flee() {
-
-    }
-
-    /**
      * Allows the player to mine for cargo
      */
     public static void mine() {
@@ -281,7 +289,21 @@ public class ActionManager {
      * Allows the player to attack an enemy
      */
     public static void attack() {
+        
+    }
 
+    /**
+     * Allows the player to attempt to run from a battle
+     */
+    public static void flee() {
+        
+    }
+
+    /**
+     * Allows the player to attempt to evade an attack
+     */
+    public static void evade() {
+            
     }
 
     /**
