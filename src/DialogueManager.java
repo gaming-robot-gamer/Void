@@ -128,11 +128,11 @@ public class DialogueManager {
         wait(1.5);
         print("Before we begin, there are some things you should know.\n\n");
         wait(1.5);
-        print("Current Year: 2570\n");
+        print("Current Year: \033[1;31m2570\033[0m\n");
         wait(1);
-        print("It is now two years after The Fracture, a solar system-wide war that \ndismantled all major governments and left the solar system in chaos.\n\n");
+        print("It is now two years after \033[1;31mThe Fracture\033[0m, a solar system-wide war that \ndismantled all major governments and left the solar system in chaos.\n\n");
         wait(1.5);
-        print("You are in the Jupiter Sector, which is controlled by the JLA, or Jovian \nLiberation Alliance. ");
+        print("You are in the Jupiter Sector, which is controlled by the \033[1;31mJLA, or Jovian \nLiberation Alliance. \033[0m\n");
         wait(1);
         print("The JLA consists of thousands of pirates who are trying \nto establish \"order\" in the sector through violent means. \n");
         wait(2.5);

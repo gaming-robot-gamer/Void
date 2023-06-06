@@ -21,8 +21,8 @@ public class Moon extends Location{
     public Moon(int resources, LocAlignment alignment) {
         super(alignment);
         this.resources = resources;
-        locType = LocType.MOON;
         name = getRandomMoonName();
+        locType = LocType.MOON;
         locOptions.add("Leave");
         locOptions.add("Mine");
         locOptions.add("Refuel");
@@ -38,5 +38,13 @@ public class Moon extends Location{
         String name = MOON_NAMES.get(randomIndex);
         MOON_NAMES.remove(randomIndex);
         return name;
+    }
+
+    public String getLocActions() {
+        String locActions = "";
+        for (String action : locOptions) {
+            locActions += action + "\n";
+        }
+        return locActions;
     }
 }

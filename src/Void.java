@@ -23,7 +23,7 @@ public class Void {
         DialogueManager.showShipStats(SHIP);
 
         // Introduction text
-        //DialogueManager.introduction();
+        DialogueManager.introduction();
 
         // Display the current location
         LocManager.createLocation(LocType.ASTEROID, LocAlignment.NEUTRAL);

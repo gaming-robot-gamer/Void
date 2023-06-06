@@ -134,11 +134,34 @@ public class ActionManager {
     }
 
     public static void printStatus() {
-        DialogueManager.print("You have " + Void.PLAYER.getCredits() + " credits \n");
-        DialogueManager.print("You have " + Void.SHIP.getAmmo() + " ammo\n");
-        DialogueManager.print("You have " + Void.SHIP.getFuel() + " fuel\n");
-        DialogueManager.print("You have " + Void.PLAYER.getOxygen() + " oxygen\n");
-        DialogueManager.print("You have " + Void.SHIP.getCargo() + " cargo\n");
+        if (Void.PLAYER.getCredits() < 10) {
+            DialogueManager.print("\033[1;31m");
+        }
+        DialogueManager.print("You have " + Void.PLAYER.getCredits() + " credits \033[0m\n");
+
+        if (Void.SHIP.getAmmo() < 10) {
+            DialogueManager.print("\033[1;31m");
+        }
+        DialogueManager.print("You have " + Void.SHIP.getAmmo() + " ammo\033[0m\n");
+
+        if (Void.SHIP.getFuel() < 10) {
+            DialogueManager.print("\033[1;31m");
+        }
+        DialogueManager.print("You have " + Void.SHIP.getFuel() + " fuel\033[0m\n");
+
+        if (Void.PLAYER.getOxygen() < 10) {
+            DialogueManager.print("\033[1;31m");
+        }
+        DialogueManager.print("You have " + Void.PLAYER.getOxygen() + " oxygen\033[0m\n");
+
+        if (Void.SHIP.getAmmo() < 10) {
+            DialogueManager.print("\033[1;31m");
+        }
+
+        if (Void.SHIP.getCargo() < 10) {
+            DialogueManager.print("\033[1;31m");
+        }
+        DialogueManager.print("You have " + Void.SHIP.getCargo() + " cargo\033[0m\n");
     }
 
     public static void buyAmmo(int ammo) {
@@ -206,16 +229,28 @@ public class ActionManager {
             String type = DialogueManager.prompt("What kind of location do you want to travel to?\n").toLowerCase();
             switch (type) {
                 case "moon":
+                    if (Void.SHIP.getFuel() < 5) {
+                        DialogueManager.print("\033[1;31mYou do not have enough fuel to travel to a moon \033[0m\n");
+                        return;
+                    }
                     LocManager.generateMoon();
-                    Void.SHIP.loseFuel(15);
-                    break;
-                case "asteroid":
-                    LocManager.generateAsteroid();
                     Void.SHIP.loseFuel(5);
                     break;
+                case "asteroid":
+                    if (Void.SHIP.getFuel() < 1) {
+                        DialogueManager.print("\033[1;31mYou do not have enough fuel to travel to an asteroid \033[0m\n");
+                        return;
+                    }
+                    LocManager.generateAsteroid();
+                    Void.SHIP.loseFuel(1);
+                    break;
                 case "space station":
+                    if (Void.SHIP.getFuel() < 3) {
+                        DialogueManager.print("\033[1;31mYou do not have enough fuel to travel to a space station \033[0m\n");
+                        return;
+                    }
                     LocManager.generateSS();
-                    Void.SHIP.loseFuel(10);
+                    Void.SHIP.loseFuel(3);
                     break;
                 default:
                     DialogueManager.print("That's not a valid destination. \n");
