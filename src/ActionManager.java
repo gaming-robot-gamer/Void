@@ -12,7 +12,11 @@ public class ActionManager {
     public static String currActions = "";
 
     public ActionManager() {
-        status = Status.DOCKED;
+       
+    }
+
+    public static void init() {
+        status = Status.TRAVEL;
     }
 
     public enum Status {
@@ -180,7 +184,7 @@ public class ActionManager {
     public static void travel() {
         if (status == Status.TRAVEL) {
             DialogueManager.print("Potential Destinations: \nMoon\nAsteroid\nSpace Station\n");
-            String type = DialogueManager.prompt("What kind of location do you want to travel to? \n").toLowerCase();
+            String type = DialogueManager.prompt("What kind of location do you want to travel to?\n").toLowerCase();
             switch (type) {
                 case "moon":
                     LocManager.generateMoon();
@@ -190,10 +194,13 @@ public class ActionManager {
                     break;
                 case "space station":
                     LocManager.generateSS();
+                default:
+                    DialogueManager.print("That's not a valid destination. \n");
+                    return;
             }
             //LocManager.generateLocation();
-            LocManager.setCurrentLocation(LocManager.getClosestLocation());
-            DialogueManager.print("You have traveled to " + LocManager.currentLocation.getName());
+            //LocManager.setCurrentLocation(LocManager.getClosestLocation());
+            DialogueManager.print("You have traveled to " + LocManager.getClosestLocation().getName());
         } else {
             DialogueManager.print("You cannot travel while docked or in battle.");
         }
