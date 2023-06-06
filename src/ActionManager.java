@@ -60,7 +60,7 @@ public class ActionManager {
     }
 
     public static void actionMenu() {
-        String input = DialogueManager.prompt("\nWhat would you like to do?\n" + currActions + "\n").toLowerCase();
+        String input = DialogueManager.prompt("\nWhat would you like to do?\n" + currActions + "\n >").toLowerCase();
 
         switch(input) {
             case "status report":
@@ -89,16 +89,16 @@ public class ActionManager {
                 printCredits();
                 refuel();
                 break;
-            case "buy Ammo":
+            case "buy ammo":
                 printCredits();
                 buyAmmo(DialogueManager.promptInt("How much ammo would you like to buy? \n Ammo is 1 credit per unit"));
                 break;
-            case "sell Cargo":
+            case "sell cargo":
                 printCredits();
                 sell(DialogueManager
                         .promptInt("How much cargo would you like to sell? \n Cargo is 3 credits per unit"));
                 break;
-            case "buy Oxygen":
+            case "buy oxygen":
                 printCredits();
                 buyOxygen(DialogueManager
                         .promptInt("How much oxygen would you like to buy? \n Oxygen is 1 credit per unit"));
@@ -115,7 +115,7 @@ public class ActionManager {
     }
 
     public static void printCredits() {
-        DialogueManager.print("You have " + Void.PLAYER.getCredits() + " credits");
+        DialogueManager.print("You have " + Void.PLAYER.getCredits() + " credits \n");
     }
 
     public static void printStatus() {
@@ -128,41 +128,44 @@ public class ActionManager {
 
     public static void buyAmmo(int ammo) {
         if (LocManager.getCurrentLocation().getLocType() == LocType.ASTEROID) {
-            DialogueManager.print("You cannot buy ammo at an asteroid");
+            DialogueManager.print("You cannot buy ammo at an asteroid \n");
             return;
         }
         if (Void.PLAYER.getCredits() >= ammo) {
             Void.PLAYER.loseCredits(ammo);
             Void.SHIP.reload(ammo);
+            DialogueManager.print("You have bought " + ammo + " ammo \n");
         } else {
-            DialogueManager.print("You do not have enough credits");
+            DialogueManager.print("You do not have enough credits \n");
         }
     }
 
     public static void buyOxygen(int oxygen) {
         if (LocManager.getCurrentLocation().getLocType() == LocType.ASTEROID) {
-            DialogueManager.print("You cannot buy ammo at an asteroid");
+            DialogueManager.print("You cannot buy ammo at an asteroid \n");
             return;
         }
         if (Void.PLAYER.getCredits() >= oxygen) {
             Void.PLAYER.loseCredits(oxygen);
             Void.PLAYER.addOxygen(oxygen);
+            DialogueManager.print("You have bought " + oxygen + " oxygen \n");
         } else {
-            DialogueManager.print("You do not have enough credits");
+            DialogueManager.print("You do not have enough credits \n");
         }
     }
 
     public static void refuel() {
         if (LocManager.getCurrentLocation().getLocType() == LocType.ASTEROID) {
-            DialogueManager.print("You cannot buy fuel at an asteroid");
+            DialogueManager.print("You cannot buy fuel at an asteroid \n");
             return;
         }
         DialogueManager.print("You have " + Void.PLAYER.getCredits() + " credits");
-        int fuelToBuy = DialogueManager.promptInt("How much fuel would you like to buy? \n Fuel is 2 credits per unit");
+        int fuelToBuy = DialogueManager.promptInt("How much fuel would you like to buy? \n Fuel is 2 credits per unit \n");
         if (fuelToBuy * 2 > Void.PLAYER.getCredits()) {
-            DialogueManager.print("You do not have enough credits");
+            DialogueManager.print("You do not have enough credits \n");
             return;
         }
+        DialogueManager.print("You have bought " + fuelToBuy + " fuel \n");
         Void.SHIP.refuel(fuelToBuy);
         Void.PLAYER.loseCredits(fuelToBuy * 2);
         Void.PLAYER.loseOxygen(1);
@@ -176,6 +179,7 @@ public class ActionManager {
         DialogueManager.print("You have docked at " + LocManager.currentLocation.getName());
         status = Status.DOCKED;
         currActions = LocManager.currentLocation.getLocActions();
+        Void.SHIP.loseFuel(1);
     }
 
     /**
@@ -188,21 +192,26 @@ public class ActionManager {
             switch (type) {
                 case "moon":
                     LocManager.generateMoon();
+                    Void.SHIP.loseFuel(15);
                     break;
                 case "asteroid":
                     LocManager.generateAsteroid();
+                    Void.SHIP.loseFuel(5);
                     break;
                 case "space station":
                     LocManager.generateSS();
+                    Void.SHIP.loseFuel(10);
+                    break;
                 default:
                     DialogueManager.print("That's not a valid destination. \n");
                     return;
             }
+            //DialogueManager.print(type);
             //LocManager.generateLocation();
             //LocManager.setCurrentLocation(LocManager.getClosestLocation());
             DialogueManager.print("You have traveled to " + LocManager.getClosestLocation().getName());
         } else {
-            DialogueManager.print("You cannot travel while docked or in battle.");
+            DialogueManager.print("You cannot travel while docked or in battle. \n");
         }
 
     }
@@ -214,14 +223,14 @@ public class ActionManager {
      */
     public static void sell(int cargo) {
         if (LocManager.getCurrentLocation().getLocType() == LocType.ASTEROID) {
-            DialogueManager.print("You cannot buy ammo at an asteroid");
+            DialogueManager.print("You cannot buy ammo at an asteroid \n");
             return;
         }
         if (Void.SHIP.getCargo() >= cargo) {
             Void.SHIP.removeCargo(cargo);
             Void.PLAYER.addCredits(cargo * 3);
         } else {
-            DialogueManager.print("You do not have enough cargo");
+            DialogueManager.print("You do not have enough cargo \n");
         }
     }
 
@@ -230,10 +239,11 @@ public class ActionManager {
      */
     public static void leave() {
         if (status == Status.DOCKED) {
-            DialogueManager.print("You have undocked.");
+            DialogueManager.print("You have undocked. \n");
+            Void.SHIP.loseFuel(1);
             status = Status.TRAVEL;
             LocManager.setCurrentLocation(LocManager.allLocs.get(0));
-            currActions = "Dock, \nTravel, \nRepair";
+            currActions = "Dock \nTravel \nRepair";
         } else {
             DialogueManager.print("You cannot undock from somewhere you're not docked to, " + Void.PLAYER.name + ".");
         }
@@ -254,15 +264,19 @@ public class ActionManager {
         if (status != Status.DOCKED) {
             if ((LocManager.getCurrentLocation().getLocType() != LocType.ASTEROID)
                     || (LocManager.getCurrentLocation().getLocType() != LocType.MOON))
-                DialogueManager.print("You cannot mine unless docked at an asteroid or moon.");
+                DialogueManager.print("You cannot mine unless docked at an asteroid or moon. \n");
             return;
         }
         Void.SHIP.addCargo(10);
         Void.PLAYER.loseOxygen(1);
+        Void.SHIP.loseFuel(1);
         DialogueManager.print("You have mined 10 cargo. ");
-        DialogueManager.print("You now have " + Void.SHIP.getCargo() + " cargo.");
+        DialogueManager.print("You now have " + Void.SHIP.getCargo() + " cargo. \n");
     }
 
+    public static void printCargo() {
+        DialogueManager.print("You have " + Void.SHIP.getCargo() + " cargo. \n");
+    }
     /**
      * Allows the player to attack an enemy
      */
@@ -275,7 +289,7 @@ public class ActionManager {
      */
     public static void repair() {
         if (status == Status.BATTLE) {
-            DialogueManager.print("You cannot repair while in battle");
+            DialogueManager.print("You cannot repair while in battle \n");
             return;
         }
 
@@ -283,7 +297,7 @@ public class ActionManager {
             Void.SHIP.removeCargo(10);
             Void.SHIP.repair(10);
         } else {
-            DialogueManager.print("You do not have enough cargo");
+            DialogueManager.print("You do not have enough cargo \n");
         }
     }
 

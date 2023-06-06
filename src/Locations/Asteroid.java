@@ -54,4 +54,13 @@ public class Asteroid extends Location{
         ASTEROID_NAMES.remove(randomIndex);
         return name;
     }
+    /*
+    public void loseResources(int amount) {
+        resources -= amount;
+        if (resources < 0) {
+            resources = 0;
+            DialogueManager.print("You have mined all the resources from this asteroid. \n");
+        } 
+
+    } */
 }

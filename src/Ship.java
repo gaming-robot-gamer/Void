@@ -138,6 +138,27 @@ public class Ship {
         }
     }
 
+    public void repairFull() {
+        durability = maxDurability;
+    }
+
+    public void refuelFull() {
+        fuel = maxFuel;
+    }
+
+    public void reloadFull() {
+        ammo = maxAmmo;
+    }
+
+    public void loseFuel(int fuel) {
+        this.fuel -= fuel;
+        if (this.fuel < 0) {
+            this.fuel = 0;
+            // rED TEXT ESACPE SEQUENCE: \033[1;31m
+            DialogueManager.print("\033[1;31mYou ran out of fuel! \033[0m");
+        }
+    }
+
     public void addCargo(double cargo) {
         this.cargo += cargo;
         if (this.cargo > maxCargo) {

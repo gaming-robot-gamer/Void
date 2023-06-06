@@ -21,6 +21,7 @@ public class SpaceStation extends Location{
     public SpaceStation(int resources, LocAlignment alignment) {
         super(alignment);
         this.resources = resources;
+        this.name = getRandomSSName();
         locType = LocType.SPACE_STATION;
         locOptions.add("Leave");
         locOptions.add("Mine");
@@ -42,7 +43,7 @@ public class SpaceStation extends Location{
     public String getLocActions() {
         String locActions = "";
         for (String action : locOptions) {
-            locActions += action + ",\n ";
+            locActions += action + "\n";
         }
         return locActions;
     }
